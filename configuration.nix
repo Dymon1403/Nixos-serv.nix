@@ -8,17 +8,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  fileSystems."/" = {
-     device = "/dev/sda3";
-     fsType = "ext4";
-  };
-  
-  fileSystems."/boot" = {
-     device = "/dev/sda1";
-     fsType = "vfat";
-  };
-
-
   # ============================================
   # Network
   # ============================================
@@ -47,6 +36,20 @@
             nn = "nvim ~/dot/configuration.nix";
             zap = "./zapret.sh";
            };
+
+  # ============================================
+  # Docker 
+  # ============================================
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
+  virtualisation.docker.enable = true;
+
+
+
 
   # ============================================
   # Locale / Time
